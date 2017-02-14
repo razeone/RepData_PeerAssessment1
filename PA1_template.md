@@ -36,7 +36,7 @@ stepsEachDay <- tapply(activity$steps, activity$date, sum, na.rm=TRUE)
 qplot(stepsEachDay, geom = "histogram", binwidth = max(stepsEachDay/10), xlab = "Total steps each day", ylab = "Frequency", main = "Total steps taken each day")
 ```
 
-![Histogram](figure/plot1.png) 
+![Histogram](figures/plot1.png) 
 
 ## What is mean total number of steps taken per day?
 
@@ -62,7 +62,7 @@ ggplot(averageSteps, aes(interval, meanOfSteps)) + geom_line(color = "steelblue"
 
 ```
 
-![](figure/plot2.png) 
+![](figures/plot2.png) 
 
 * The 5-minute interval that, on average, contains the maximum number of steps
 
@@ -106,7 +106,7 @@ ggplot(newAverage, aes(date, steps)) + geom_bar(stat = "identity",
 
 ```
 
-![](figure/plot3.png) 
+![](figures/plot3.png) 
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -128,7 +128,7 @@ result <- aggregate(newAverage$steps, list(interval = newAverage$interval,
 xyplot(x ~ interval | dayType, result, layout=c(1,2), type = "l", ylab = "Number of Steps")
 ```
 
-![](figure/plot4.png) 
+![](figures/plot4.png) 
 
 There's just a small difference between weekdays and weekends on average.
 
