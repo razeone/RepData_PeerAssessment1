@@ -6,10 +6,11 @@ output: html_document
 ---
 
 # This is the week's 2 assignment for reproducible research
-First we load ggplot2, needed for the analysis.
+First we load ggplot2, and libraries needed for the analysis.
 
 ```{r}
 library(ggplot2)
+library(lattice)
 ```
 
 ## Loading and preprocessing the data
@@ -35,6 +36,8 @@ stepsEachDay <- tapply(activity$steps, activity$date, sum, na.rm=TRUE)
 qplot(stepsEachDay, geom = "histogram", binwidth = max(stepsEachDay/10), xlab = "Total steps each day", ylab = "Frequency", main = "Total steps taken each day")
 ```
 
+![](figure/plot1.png) 
+
 ## What is mean total number of steps taken per day?
 
 ### Mean and median of the steps taken each day
@@ -58,6 +61,8 @@ names(averageSteps)[2] <- "meanOfSteps"
 ggplot(averageSteps, aes(interval, meanOfSteps)) + geom_line(color = "steelblue", size = 0.8) + labs(title = "Time Series Plot of the 5-minute Interval", x = "5-minute intervals", y = "Average Number of Steps Taken")
 
 ```
+
+![](figure/plot2.png) 
 
 * The 5-minute interval that, on average, contains the maximum number of steps
 
@@ -101,6 +106,8 @@ ggplot(newAverage, aes(date, steps)) + geom_bar(stat = "identity",
 
 ```
 
+![](figure/plot3.png) 
+
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
@@ -118,9 +125,10 @@ newAverage$dayType = ifelse(weekdays(newAverage$date) %in% wkdy, "weekday", "wee
 result <- aggregate(newAverage$steps, list(interval = newAverage$interval,
                                        dayType = newAverage$dayType), mean)
 # Create a time series plot of interval vs avg steps
-library(lattice)
 xyplot(x ~ interval | dayType, result, layout=c(1,2), type = "l", ylab = "Number of Steps")
 ```
+
+![](figure/plot4.png) 
 
 There's just a small difference between weekdays and weekends on average.
 
