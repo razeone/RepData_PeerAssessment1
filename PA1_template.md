@@ -36,7 +36,7 @@ stepsEachDay <- tapply(activity$steps, activity$date, sum, na.rm=TRUE)
 qplot(stepsEachDay, geom = "histogram", binwidth = max(stepsEachDay/10), xlab = "Total steps each day", ylab = "Frequency", main = "Total steps taken each day")
 ```
 
-![](figure/plot1.png) 
+![Histogram](figure/plot1.png) 
 
 ## What is mean total number of steps taken per day?
 
